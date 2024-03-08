@@ -90,14 +90,14 @@ namespace Atn
 
       StartJsonArray("events");
       for (int i = 0; i < nrChildren; i++) {
-	ReadActionEvent();
+	ReadActionEvent(i == (nrChildren - 1));
       }
       EndJsonArray(true);
       
       Console.WriteLine("}" + ((last) ? "" : ","));
     }
 
-    void ReadActionEvent()
+    void ReadActionEvent(bool last)
     {
       byte expanded = ReadByte();
       byte enabled = ReadByte();
@@ -115,8 +115,10 @@ namespace Atn
       FormatJson("dialogOptions", dialogOptions);
       FormatJson("name", name);
       FormatJson("displayName", displayName);
-      FormatJson("hasDescriptor", hasDescriptor);
+      FormatJson("hasDescriptor", hasDescriptor, hasDescriptor != -1);
 
+      if (hasDescriptor == -1)
+      {
       var classID = ReadUnicodeString();
       FormatJson("classID", classID);
       
@@ -124,8 +126,9 @@ namespace Atn
       FormatJson("classID2", classID2);
 
       ReadItems();
+      }
 
-      Console.WriteLine("}");
+      Console.WriteLine("}" + ((last) ? "" : ","));
     }
 
     void ReadItems()
