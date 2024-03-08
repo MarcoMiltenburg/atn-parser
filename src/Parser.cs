@@ -329,16 +329,16 @@ namespace Atn
       Console.WriteLine($"\"{key}\": [");
 
     void EndJsonArray(bool last = false) => 
-      Console.WriteLine($"]{last ? "" : ","}");
+      Console.WriteLine($"]{(last ? "" : ",")}");
 
     void FormatJson(string key, string value, bool last = false) => 
-      Console.WriteLine($"\"{key}\": \"{value}\"{last ? "" : ","}");
+      Console.WriteLine($"\"{key}\": \"{value}\"{(last ? "" : ",")}");
 
     void FormatJson(string key, int value, bool last = false) => 
-      Console.WriteLine($"\"{key}\": \"{value}\"{last ? "" : ","}");
+      Console.WriteLine($"\"{key}\": \"{value}\"{(last ? "" : ",")}");
 
     void FormatJson(string key, double value, bool last = false) => 
-      Console.WriteLine($"\"{key}\": \"{value}\"{last ? "" : ","}");
+      Console.WriteLine($"\"{key}\": \"{value}\"{(last ? "" : ",")}");
 
     // Helper routines to read from binary file
 
