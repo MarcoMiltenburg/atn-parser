@@ -27,7 +27,8 @@ namespace Atn
 	["Objc"] = ParseObjc,
 	["TEXT"] = ParseText,
 	["UntF"] = ParseDoubleWithUnit,
-	["VlLs"] = ParseList
+	["VlLs"] = ParseList,
+    ["alis"] = ParseAlias,
       };
     }
 
@@ -119,13 +120,13 @@ namespace Atn
 
       if (hasDescriptor == -1)
       {
-      var classID = ReadUnicodeString();
-      FormatJson("classID", classID);
+          var classID = ReadUnicodeString();
+          FormatJson("classID", classID);
       
-      var classID2 = ReadTokenOrString();
-      FormatJson("classID2", classID2);
+          var classID2 = ReadTokenOrString();
+          FormatJson("classID2", classID2);
 
-      ReadItems();
+          ReadItems();
       }
 
       Console.WriteLine("}" + ((last) ? "" : ","));
@@ -286,6 +287,13 @@ namespace Atn
     {
       var value = ReadUnicodeString();
       FormatJson("value", value, true);
+    }
+
+    void ParseAlias()
+    {
+      var length = ReadInt32();
+      ReadBytes(length);
+      FormatJson("length", length, true);
     }
 
     void ParseProperty()
