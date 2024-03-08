@@ -47,7 +47,7 @@ namespace Atn
 
     public void Parse(string file)
     {
-      Reader = new BinaryReader(File.Open(file, FileMode.Open));
+      Reader = new BinaryReader(File.Open(file, FileMode.Open, FileAccess.Read, FileShare.Read));
       int version = ReadInt32();
       var set = ReadUnicodeString();
       byte expanded = ReadByte();
