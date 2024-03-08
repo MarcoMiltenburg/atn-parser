@@ -319,7 +319,7 @@ namespace Atn
       else
 	{
 	  Console.WriteLine("Unknown text: " + text);
-	  return null;
+	  return string.Empty;
 	}
     }
 
