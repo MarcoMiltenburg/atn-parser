@@ -369,7 +369,7 @@ namespace Atn
       var buffer = Reader.ReadBytes(2 * length);
       ReadBytes(2);	// Read and ignore 2 zero's
 
-      for (int i = 0; i < 2 * length; i += 2)
+      for (int i = 0; i < buffer.Length; i += 2)
 	{
 	  byte tmp = buffer[i];
 	  buffer[i] = buffer[i + 1];
