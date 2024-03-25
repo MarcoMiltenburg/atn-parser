@@ -380,15 +380,7 @@ namespace Atn
       var buffer = Reader.ReadBytes(2 * length);
       ReadBytes(2);	// Read and ignore 2 zero's
 
-      for (int i = 0; i < buffer.Length; i += 2)
-	{
-	  byte tmp = buffer[i];
-	  buffer[i] = buffer[i + 1];
-	  buffer[i + 1] = tmp;
-	}
-
-      var encoding = Encoding.Unicode;
-      return encoding.GetString(buffer);
+      return Encoding.BigEndianUnicode.GetString(buffer);
     }
 
     string ReadUnicodeString() => ReadUnicodeString(ReadInt32());
